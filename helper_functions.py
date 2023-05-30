@@ -120,7 +120,8 @@ def obtem_info_contrato(release, contrato):
 def obtem_info_contratos_release(release):
   contratos = []
 
-  for contrato in release['contracts']:
-    contratos.append(obtem_info_contrato(release, contrato))
-  
+  if 'contracts' in release:
+    for contrato in release['contracts']:
+      contratos.append(obtem_info_contrato(release, contrato))
+      
   return contratos
