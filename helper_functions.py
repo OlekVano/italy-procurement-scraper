@@ -23,7 +23,7 @@ def obtem_award_por_id(release, id):
 def obtem_entidades_adjudicatarias(release, contrato):
   entidades_adjudicatarias = []
   
-  award = obtem_award_por_id(contrato['id'])
+  award = obtem_award_por_id(release, contrato['id'])
 
   for supplier in award['suppliers']:
     entidades_adjudicatarias.append(f"{supplier['name']} ({supplier['id']})")
@@ -35,6 +35,8 @@ def obtem_cpvs(contrato):
 
   for item in contrato['items']:
     cpvs.append(f"{item['classification']['id']} {item['classification']['description']}")
+
+  return cpvs
 
 def obtem_preco_contratual(contrato):
   moedas = {}
@@ -60,8 +62,8 @@ def obtem_data_celebracao(contrato):
   return contrato['dateSigned']
   
 def obtem_prazo_execucao(contrato):
-  data_assinatura = datetime.strptime(contrato['dateSigned'], FORMATO_DATAS)
-  data_final = datetime.strptime(contrato['period']['endDate'], FORMATO_DATAS)
+  data_assinatura = datetime.strptime(contrato['dateSigned'][:10], FORMATO_DATAS)
+  data_final = datetime.strptime(contrato['period']['endDate'][:10], FORMATO_DATAS)
 
   diferenca = data_final - data_assinatura
 
@@ -73,7 +75,7 @@ def obtem_comprador_por_id(release, id):
       return party
 
 def obtem_local_execucao(release):
-  comprador = obtem_comprador_por_id(release, release['buyer'['id']])
+  comprador = obtem_comprador_por_id(release, release['buyer']['id'])
   endereco_comprador = comprador['address']
 
   partes_local = []
@@ -95,13 +97,13 @@ def obtem_info_contrato(release, contrato):
     'tipo_procedimento': obtem_tipo_procedimento(release),
     'tipo_contrato': obtem_tipo_contrato(release),
     'cpvs': obtem_cpvs(contrato),
-    'entidade_adjudicante': obtem_entidade_adjudicante(release),
-    'entidade_adjudicataria': obtem_entidades_adjudicatarias(release, contrato),
-    'preco_contratual': obtem_preco_contratual,
+    'entidades_adjudicantes': [obtem_entidade_adjudicante(release)],
+    'entidades_adjudicatarias': obtem_entidades_adjudicatarias(release, contrato),
+    'preco_contratual': obtem_preco_contratual(contrato),
     'data_publicacao': obtem_data_publicacao(release),
-    'data_celebracao': obtem_data_celebracao(release),
+    'data_celebracao': obtem_data_celebracao(contrato),
     'prazo_execucao': obtem_prazo_execucao(contrato),
-    'local_execucao': obtem_local_execucao(),
+    'local_execucao': obtem_local_execucao(release),
     'fundamentacao': 'NOT IMPLEMENTED',
     'data_fecho_contrato': obtem_data_fecho(contrato)
   }
