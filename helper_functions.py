@@ -59,11 +59,22 @@ def obtem_data_publicacao(release):
   return release['date'][:10]
 
 def obtem_data_celebracao(contrato):
-  return contrato['dateSigned']
-  
+  if 'dateSigned' in contrato:
+    return contrato['dateSigned'][:10]
+  if 'period' in contrato and 'startDate' in contrato['period']:
+    return contrato['period']['startDate'][:10]
+  if 'amendments' in contrato:
+    print(contrato['amendments'])
+    return contrato['amendments'][-1]['date'][:10]
+
+  return 'NOT FOUND'
+
+def obtem_data_fecho(contrato):
+  return contrato['period']['endDate'][:10]
+
 def obtem_prazo_execucao(contrato):
-  data_assinatura = datetime.strptime(contrato['dateSigned'][:10], FORMATO_DATAS)
-  data_final = datetime.strptime(contrato['period']['endDate'][:10], FORMATO_DATAS)
+  data_assinatura = datetime.strptime(obtem_data_celebracao(contrato), FORMATO_DATAS)
+  data_final = datetime.strptime(obtem_data_fecho(contrato), FORMATO_DATAS)
 
   diferenca = data_final - data_assinatura
 
@@ -79,17 +90,13 @@ def obtem_local_execucao(release):
   endereco_comprador = comprador['address']
 
   partes_local = []
-  chaves_endereco = endereco_comprador.keys()
 
-  if 'countryName' in chaves_endereco:
+  if 'countryName' in endereco_comprador:
     partes_local.append(comprador['address']['countryName'])
-  if 'locality' in chaves_endereco:
+  if 'locality' in endereco_comprador:
     partes_local.append(comprador['address']['locality'])
 
   return ', '.join(partes_local)
-
-def obtem_data_fecho(contrato):
-  return contrato['period']['endDate'][:10]
 
 def obtem_info_contrato(release, contrato):
   info = {
