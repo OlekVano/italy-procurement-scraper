@@ -58,22 +58,22 @@ def obtem_preco_contratual(contrato):
 def obtem_data_publicacao(release):
   return release['date'][:10]
 
-def obtem_data_celebracao(contrato):
+def obtem_data_celebracao(release, contrato):
   if 'dateSigned' in contrato:
     return contrato['dateSigned'][:10]
   if 'period' in contrato and 'startDate' in contrato['period']:
     return contrato['period']['startDate'][:10]
   if 'amendments' in contrato:
-    print(contrato['amendments'])
     return contrato['amendments'][-1]['date'][:10]
-
-  return 'NOT FOUND'
+  
+  award = obtem_award_por_id(release, contrato['id'])
+  return award['date'][:10]
 
 def obtem_data_fecho(contrato):
   return contrato['period']['endDate'][:10]
 
-def obtem_prazo_execucao(contrato):
-  data_assinatura = datetime.strptime(obtem_data_celebracao(contrato), FORMATO_DATAS)
+def obtem_prazo_execucao(release, contrato):
+  data_assinatura = datetime.strptime(obtem_data_celebracao(release, contrato), FORMATO_DATAS)
   data_final = datetime.strptime(obtem_data_fecho(contrato), FORMATO_DATAS)
 
   diferenca = data_final - data_assinatura
@@ -108,8 +108,8 @@ def obtem_info_contrato(release, contrato):
     'entidades_adjudicatarias': obtem_entidades_adjudicatarias(release, contrato),
     'preco_contratual': obtem_preco_contratual(contrato),
     'data_publicacao': obtem_data_publicacao(release),
-    'data_celebracao': obtem_data_celebracao(contrato),
-    'prazo_execucao': obtem_prazo_execucao(contrato),
+    'data_celebracao': obtem_data_celebracao(release, contrato),
+    'prazo_execucao': obtem_prazo_execucao(release, contrato),
     'local_execucao': obtem_local_execucao(release),
     'fundamentacao': 'NOT IMPLEMENTED',
     'data_fecho_contrato': obtem_data_fecho(contrato)
