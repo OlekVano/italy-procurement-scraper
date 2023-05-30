@@ -1,0 +1,183 @@
+{
+    "id": "ocds-hu01ve-7673556-01",
+    "awards": [
+        {
+            "id": "1780883",
+            "items": [
+                {
+                    "id": "819168042F",
+                    "relatedLot": "819168042F",
+                    "description": "SOLUZIONE INIETTABILE DI 18F-FDG RELATIVA AI DIVERSI LIVELLI DI ATTIVIT\u00c0",
+                    "unit": {
+                        "value": {
+                            "amount": 145530,
+                            "currency": "EUR"
+                        }
+                    },
+                    "classification": {
+                        "id": "33690000-3",
+                        "description": "MEDICINALI VARI",
+                        "scheme": "CPV",
+                        "uri": "https://dati.anticorruzione.it/data/cpv/33690000-3"
+                    }
+                }
+            ],
+            "suppliers": [
+                {
+                    "id": "01493500704",
+                    "name": "ADVANCED ACCELERATOR APPLICATIONS (ITALY) - S.R.L."
+                }
+            ],
+            "status": "active",
+            "date": "2020-01-30T12:00:00Z",
+            "value": {
+                "amount": 145530,
+                "currency": "EUR"
+            },
+            "relatedLots": [
+                "819168042F"
+            ]
+        }
+    ],
+    "contracts": [
+        {
+            "id": "1780883",
+            "items": [
+                {
+                    "id": "819168042F",
+                    "relatedLot": "819168042F",
+                    "description": "SOLUZIONE INIETTABILE DI 18F-FDG RELATIVA AI DIVERSI LIVELLI DI ATTIVIT\u00c0",
+                    "unit": {
+                        "value": {
+                            "amount": 145530,
+                            "currency": "EUR"
+                        }
+                    },
+                    "classification": {
+                        "id": "33690000-3",
+                        "description": "MEDICINALI VARI",
+                        "scheme": "CPV",
+                        "uri": "https://dati.anticorruzione.it/data/cpv/33690000-3"
+                    }
+                }
+            ],
+            "awardID": "1780883",
+            "period": {
+                "endDate": "2022-12-31T12:00:00Z"
+            },
+            "dateSigned": "2020-06-30T12:00:00Z"
+        }
+    ],
+    "tender": {
+        "lots": [
+            {
+                "id": "819168042F",
+                "description": "SOLUZIONE INIETTABILE DI 18F-FDG RELATIVA AI DIVERSI LIVELLI DI ATTIVIT\u00c0",
+                "value": {
+                    "amount": 145530,
+                    "currency": "EUR"
+                },
+                "status": "active"
+            }
+        ],
+        "id": "7673556",
+        "description": "ADESIONE ALLE CONVENZIONI STIPULATE SU INIZIATIVA DI INTERCENT-ER - AGENZIA REGIONALE DI SVILUPPO DEI MERCATI TELEMATICI - PER LACQUISTO DI RADIOFARMACI 2. LOTTO 3. POS. 3/425-2019",
+        "value": {
+            "amount": 145530,
+            "currency": "EUR"
+        },
+        "mainProcurementCategory": "goods",
+        "procurementMethodDetails": "COD:27 ; TITLE:AFFIDAMENTO DIRETTO IN ADESIONE AD ACCORDO QUADRO/CONVENZIONE",
+        "tenderPeriod": {
+            "startDate": "2020-01-30T12:00:00Z",
+            "endDate": "2020-01-30T12:00:00Z"
+        },
+        "items": [
+            {
+                "id": "819168042F",
+                "relatedLot": "819168042F",
+                "description": "SOLUZIONE INIETTABILE DI 18F-FDG RELATIVA AI DIVERSI LIVELLI DI ATTIVIT\u00c0",
+                "unit": {
+                    "value": {
+                        "amount": 145530,
+                        "currency": "EUR"
+                    }
+                },
+                "classification": {
+                    "id": "33690000-3",
+                    "description": "MEDICINALI VARI",
+                    "scheme": "CPV",
+                    "uri": "https://dati.anticorruzione.it/data/cpv/33690000-3"
+                }
+            }
+        ]
+    },
+    "ocid": "ocds-hu01ve-7673556",
+    "date": "2021-01-28 14:22:15.418T12:00:00Z",
+    "language": "ita",
+    "tag": [
+        "tender",
+        "award",
+        "contract"
+    ],
+    "initiationType": "tender",
+    "buyer": {
+        "id": "01598570354",
+        "name": "AZIENDA UNITA  SANITARIA LOCALE DI REGGIO EMILIA"
+    },
+    "parties": [
+        {
+            "id": "01598570354",
+            "additionalIdentifiers": [
+                {
+                    "id": "0000187277",
+                    "legalName": "AZIENDA UNITA' SANITARIA LOCALE DI REGGIO EMILIA",
+                    "scheme": "AUSA"
+                }
+            ],
+            "name": "AZIENDA UNITA' SANITARIA LOCALE DI REGGIO EMILIA",
+            "identifier": {
+                "id": "01598570354",
+                "scheme": "IT-CF",
+                "legalName": "AZIENDA UNITA' SANITARIA LOCALE DI REGGIO EMILIA"
+            },
+            "address": {
+                "streetAddress": "VIA AMENDOLA NR 2",
+                "locality": "REGGIO NELL'EMILIA",
+                "postalCode": "42122",
+                "countryName": "ITALY"
+            },
+            "roles": [
+                "buyer"
+            ]
+        },
+        {
+            "id": "01493500704",
+            "name": "ADVANCED ACCELERATOR APPLICATIONS (ITALY) - S.R.L.",
+            "identifier": {
+                "id": "01493500704",
+                "scheme": "IT-CF",
+                "legalName": "ADVANCED ACCELERATOR APPLICATIONS (ITALY) - S.R.L."
+            },
+            "roles": [
+                "supplier"
+            ]
+        },
+        {
+            "id": "E05AF1D2-F4EB-4CE7-B311-505E5866AF37",
+            "name": "SERVIZIO APPROVVIGIONAMENTI",
+            "identifier": {
+                "id": "E05AF1D2-F4EB-4CE7-B311-505E5866AF37",
+                "scheme": "internal",
+                "legalName": "SERVIZIO APPROVVIGIONAMENTI"
+            },
+            "address": {
+                "locality": "REGGIO NELL'EMILIA",
+                "postalCode": "42122"
+            },
+            "roles": [
+                "payer"
+            ]
+        }
+    ]
+}
