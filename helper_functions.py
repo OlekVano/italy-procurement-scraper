@@ -66,16 +66,19 @@ def obtem_data_celebracao(release, contrato):
   if 'amendments' in contrato:
     return contrato['amendments'][-1]['date'][:10]
   
-  award = obtem_award_por_id(release, contrato['id'])
-  return award['date'][:10]
+  return None
 
 def obtem_data_fecho(contrato):
   return contrato['period']['endDate'][:10]
 
 def obtem_prazo_execucao(release, contrato):
-  data_assinatura = datetime.strptime(obtem_data_celebracao(release, contrato), FORMATO_DATAS)
-  data_final = datetime.strptime(obtem_data_fecho(contrato), FORMATO_DATAS)
+  data_assinatura = obtem_data_celebracao(release, contrato)
 
+  if data_assinatura == None:
+    return None
+
+  data_assinatura = datetime.strptime(data_assinatura, FORMATO_DATAS)
+  data_final = datetime.strptime(obtem_data_fecho(contrato), FORMATO_DATAS)
   diferenca = data_final - data_assinatura
 
   return f'{diferenca.days} dias'
