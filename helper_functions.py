@@ -90,6 +90,10 @@ def obtem_comprador_por_id(release, id):
 
 def obtem_local_execucao(release):
   comprador = obtem_comprador_por_id(release, release['buyer']['id'])
+
+  if comprador == None:
+    return None
+
   endereco_comprador = comprador['address']
 
   partes_local = []
