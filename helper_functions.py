@@ -28,6 +28,7 @@ def obtem_entidades_adjudicatarias(release, contrato):
   if 'suppliers' in award:
     for supplier in award['suppliers']:
       entidades_adjudicatarias.append(f"{supplier['name']} ({supplier['id']})")
+  # Se award nao tem suppliers, entao encontrar suplier em parties
   else:
     for party in release['parties']:
       if 'supplier' in party['roles']:
@@ -44,6 +45,7 @@ def obtem_cpvs(contrato):
   return cpvs
 
 def obtem_preco_contratual(contrato):
+  # No caso de houverem diferentes moedas ao mesmo tempo (por exempo, euros e dollares)
   moedas = {}
   for item in contrato['items']:
     try:
@@ -77,14 +79,14 @@ def obtem_data_fecho(contrato):
   return contrato['period']['endDate'][:10]
 
 def obtem_prazo_execucao(release, contrato):
-  data_assinatura = obtem_data_celebracao(release, contrato)
+  data_celebracao = obtem_data_celebracao(release, contrato)
 
-  if data_assinatura == None:
+  if data_celebracao == None:
     return None
 
-  data_assinatura = datetime.strptime(data_assinatura, FORMATO_DATAS)
+  data_celebracao = datetime.strptime(data_celebracao, FORMATO_DATAS)
   data_final = datetime.strptime(obtem_data_fecho(contrato), FORMATO_DATAS)
-  diferenca = data_final - data_assinatura
+  diferenca = data_final - data_celebracao
 
   return f'{diferenca.days} dias'
 
@@ -136,4 +138,13 @@ def obtem_info_contratos_release(release):
     for contrato in release['contracts']:
       contratos.append(obtem_info_contrato(release, contrato))
       
+  return contratos
+
+def obtem_info_contratos_dataset(dataset):
+  contratos = []
+  for i in range(len(dataset['releases'])) :
+    try:
+      contratos.extend(obtem_info_contratos_release(dataset['releases'][i]))
+    except:
+      print(f'Failed to scrape release number {i}')
   return contratos
