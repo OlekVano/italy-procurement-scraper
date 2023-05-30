@@ -22,11 +22,16 @@ def obtem_award_por_id(release, id):
 
 def obtem_entidades_adjudicatarias(release, contrato):
   entidades_adjudicatarias = []
-  
+
   award = obtem_award_por_id(release, contrato['id'])
 
-  for supplier in award['suppliers']:
-    entidades_adjudicatarias.append(f"{supplier['name']} ({supplier['id']})")
+  if 'suppliers' in award:
+    for supplier in award['suppliers']:
+      entidades_adjudicatarias.append(f"{supplier['name']} ({supplier['id']})")
+  else:
+    for party in release['parties']:
+      if 'supplier' in party['roles']:
+        entidades_adjudicatarias.append(party)
 
   return entidades_adjudicatarias
 
